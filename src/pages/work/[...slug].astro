@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import DocumentDirectory from '../../components/DocumentDirectory.astro';
 import { Marked } from 'marked';
 import architectureImage from '../../assets/omnilib-arch-diagram.jpeg';
 import pipelineImage from '../../assets/automated-pipeline-flow.jpeg';
@@ -24,4 +25,4 @@ return found ? `](/work/${found.split('/content/')[1]})` : match;
 const html = await new Marked().parse(source);
 const title = String(content).split('\n').find(line => line.startsWith('# '))?.replace(/^# /,'') || category;
 ---
-<Layout title={`${title} — Dhara Gohil`}><article class="document wrap"><a class="document-back" href="/#work">← Back to selected work</a><p class="eyebrow">WRITING SAMPLE / {category.replaceAll('-',' ').toUpperCase()}</p><div class="prose" set:html={html}></div><nav class="sample-nav" aria-label="Related writing samples"><h2>Explore this collection</h2><div>{related.map(([path]) => {const slug = path.split('/content/')[1]; const name = slug.split('/')[1];return <a href={`/work/${slug}`} aria-current={Astro.params.slug === slug ? 'page' : undefined}>{labels[name] || name.replaceAll('-',' ')}</a>})}</div></nav></article></Layout>
+<Layout title={`${title} — Dhara Gohil`}><article class="document wrap"><a class="document-back" href="/#work">← Back to selected work</a><p class="eyebrow">WRITING SAMPLE / {category.replaceAll('-',' ').toUpperCase()}</p><aside class="document-navigation"><h2>Browse documents by category</h2><DocumentDirectory currentSlug={Astro.params.slug} /></aside><div class="prose" set:html={html}></div><nav class="sample-nav" aria-label="Related writing samples"><h2>Explore this collection</h2><div>{related.map(([path]) => {const slug = path.split('/content/')[1]; const name = slug.split('/')[1];return <a href={`/work/${slug}`} aria-current={Astro.params.slug === slug ? 'page' : undefined}>{labels[name] || name.replaceAll('-',' ')}</a>})}</div></nav></article></Layout>
