@@ -1,13 +1,13 @@
 # Technical Content Contribution Guide
 
-Follow these steps to submit edits or suggest new guides.
+This section provides information on editing documentation on a repository.
 
 ## Step-by-Step Contribution Workflow
 
 ### 1. Fork & Branch the Repository
 Clone the repository locally and create a feature branch:
 ```bash
-git checkout -b docs/fix-mfa-token-expiration
+git checkout -b docs/fix-my-token-expiration
 ```
 
 ### 2. Adhere to Content Guidelines
@@ -23,3 +23,15 @@ Push the local branch to the remote infrastructure tracking workspace and open a
 *   Clearly state the problem the documentation fix resolves.
 *   Link any relevant tracking tickets (e.g., Closes issue `#4321`).
 *   Assign at least one Senior Technical Writer and one Engineering Subject Matter Expert (SME) to review the content.
+
+### 4. Merge Changes
+Merge the updates with the main branch:
+```bash
+git merge docs/fix-my-token-expiration
+```
+
+### 5. Safely Delete the Branch
+Delete the temporary branch created for updates:
+```bash
+git branch -d docs/fix-my-token-expiration
+```
