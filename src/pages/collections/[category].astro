@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { categories, documents } from '../../data/documents';
+export function getStaticPaths() {
+    return categories.map(category => ({ params: { category: category.slug }, props: { category } }));
+}
+const { category } = Astro.props;
+const entries = documents.filter(document => document.slug.startsWith(`${category.slug}/`));
+---
+<Layout title={`${category.label} — Dhara Gohil`}>
+    <section class="collection wrap">
+        <a class="document-back" href="/#documents">← All categories</a>
+        <p class="eyebrow">THE DOCUMENT LIBRARY / {entries.length} DOCUMENTS</p>
+        <h1>{category.label}</h1>
+        <p class="collection-description">{category.description}</p>
+        <ol class="collection-list">
+            {entries.map((document, index) => <li><a href={`/work/${document.slug}`}><span class="entry-number">{String(index + 1).padStart(2, '0')}</span><span>{document.title}</span><span class="entry-action">Read document <span aria-hidden="true">↗</span></span></a></li>)}
+        </ol>
+    </section>
+</Layout>
