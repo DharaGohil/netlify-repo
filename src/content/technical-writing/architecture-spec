@@ -1,0 +1,64 @@
+# Architectural Specification: OmniLib House Centralized Topology
+
+## System Design Philosophy
+OmniLib House uses a single central system connected to data streams to track everything. This system works independently from individual library servers, keeping all information synchronized in real time. It automatically updates records whenever books are shipped between libraries in different cities, searched for in the online digital catalog, or passed directly from one user to another. OmniLib House also records and maintains the history of all physical or online events hosted in the library. 
+
+## Core Functional Subsystems
+
+![OmniLib Architecture Diagram](assets/omnilib-arch-diagram.jpeg)
+
+### A. Inter-Library Logistics Router (ILLR)
+The ILLR handles physical books dropped off outside their home branches. When a book native to *City A* is scanned into *City B*, the ILLR flags the book status as `In_Transit_Internal`. It then calculates inventory distribution needs across all network branches to decide whether the book should be shipped home or reassigned to a new city branch.
+
+### B. Decentralized Custody Transfer Protocol (DCTP)
+The DCTP allows face-to-face peer book exchanges between traveling or local users without library intervention. To prevent systemic fraud, custody handshakes require dual-factor validation:
+-    **Initiator Token:** The current book holder requests a time-locked token (`TTL: 300 seconds`).
+-    **Receiver Acknowledgment:** The new borrower inputs or scans the payload token, executing a secure, atomic state update inside the central ledger.
+
+### C. Event Streaming Subsystem (ESS)
+The ESS manages library-hosted events, such as book signings, workshops, and author talks. This subsystem handles event registration, automates advance notifications to users, and manages post-event video distribution. 
+
+Event Handling Workflows:
+-    Event Creation and Registration: When a library schedules an event, the system records the details (host, time, venue, and capacity) in the central database. 
+-    Advance Notifications: The system scans user profiles for matching interests or local proximity and automatically sends invitations and reminders before the event begins. 
+-    Media Processing and Sharing: After the event concludes, the subsystem processes the video recordings, links them to the event's history, and publishes them for users to watch on demand. 
+
+**Event Subsystem Database Schema**
+```sql
+CREATE TABLE library_events ( 
+    event_id UUID PRIMARY KEY DEFAULT gen_random_uuid(), 
+    title VARCHAR(150) NOT NULL, 
+    event_type VARCHAR(50) CHECK (event_type IN ('book_signing', 'workshop', 'author_talk', 'community_meeting')), 
+    host_branch_city VARCHAR(50) NOT NULL, 
+    scheduled_timestamp TIMESTAMP WITH TIME ZONE NOT NULL, 
+    max_capacity INT, 
+    video_recording_url VARCHAR(255), 
+    operational_status VARCHAR(30) CHECK (operational_status IN ('scheduled', 'in_progress', 'completed', 'cancelled')) 
+);
+```
+
+## Core Relational Database Schemas
+
+### Physical Asset Ledger (`physical_assets`)
+```sql
+CREATE TABLE physical_assets (
+    asset_id VARCHAR(64) PRIMARY KEY,
+    isbn_identifier VARCHAR(13) NOT NULL,
+    home_branch_city VARCHAR(50) NOT NULL,
+    current_branch_city VARCHAR(50) NOT NULL,
+    operational_status VARCHAR(30) CHECK (operational_status IN ('available', 'checked_out', 'in_transit', 'p2p_hold', 'decommissioned')),
+    assigned_holder_id VARCHAR(64) REFERENCES user_profiles(account_id)
+);
+```
+
+### Peer Exchange Ledger (`p2p_exchange_history`)
+```sql
+CREATE TABLE p2p_exchange_history (
+    transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    asset_id VARCHAR(64) REFERENCES physical_assets(asset_id),
+    sender_account_id VARCHAR(64) NOT NULL,
+    receiver_account_id VARCHAR(64) NOT NULL,
+    gps_coordinates_verification VARCHAR(100),
+    timestamp_completed TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+```

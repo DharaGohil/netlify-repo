@@ -1,0 +1,38 @@
+# Corporate Knowledge Base Architecture Plan
+
+## Executive Summary
+This document outlines the strategic restructuring of our enterprise Knowledge Base (KB). The goal is to maximize self-service enablement, decrease duplicate content by 40%, and reduce customer support ticket volumes by routing users to verified, structurally sound technical solutions.
+
+## Core Hierarchy & Information Architecture
+The KB is organized into four main functional pillars to support internal support engineers, external DevOps clients, and standard system administrators.
+
+```text
+Root Tier (Enterprise Cloud Platform)
+├── 01-Onboarding-and-Licensing (User Persona: Global Admins)
+│   ├── Getting Started Guides
+│   └── License Activation & True-Up Guides
+├── 02-Core-Infrastructure (User Persona: Cloud Architects)
+│   ├── Compute Provisioning
+│   └── Network Topology & VPC Peering
+├── 03-Security-and-Compliance (User Persona: InfoSec Officers)
+│   ├── Identity Governance (IAM)
+│   └── Audit Logging & Audit Trails
+└── 04-Developer-Resources (User Persona: Systems Engineers)
+    ├── SDK Reference Links
+    └── Webhook Integration Modules
+```
+
+## Article Metadata Standards
+To maintain cross-platform indexing capabilities, every knowledge base article must include the following YAML frontmatter:
+
+```yaml
+id: KB-10825
+title: Troubleshooting Asynchronous Database Connection Pools Timeout
+author: Dhara Gohil
+created_date: 2026-11-01
+last_reviewed: 2026-11-01
+audience: [devops-engineers, tier-3-support]
+products: [cloud-broker-v2]
+lifecycle_status: verified
+tags: [database, clustering, connection-pool]
+```

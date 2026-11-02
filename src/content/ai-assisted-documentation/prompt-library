@@ -1,0 +1,45 @@
+# Enterprise Technical Writing Prompt Engineering Library
+
+This repository contains reusable, highly structured prompts designed to accelerate daily documentation workflows while maintaining compliance with corporate style guides.
+
+## Prompt 1: Converting Unstructured SME Code Notes to Structured User Guides
+
+### Context Template
+```text
+Role: Senior Technical Communication Expert
+Task: Convert raw, fragmented notes from software developers into a structured, step-by-step end-user guide.
+Audience: System Administrators / Integration Engineers
+Style Rules: Use active voice, imperative verbs for steps, sentence case for headings, and clear formatting patterns.
+```
+
+### Execution Prompt Payload
+```text
+You are a Senior Technical Writer. Analyze the raw engineering notes provided below and transform them into a clean, professional, Markdown-formatted installation or configuration guide. 
+
+Ensure the output contains:
+1. A clear Tier-1 main heading title.
+2. An "Overview" section summarizing what the feature accomplishes.
+3. A "Prerequisites" bulleted checklist.
+4. A step-by-step numbered sequence where each instruction begins with a clear, direct command (imperative verb).
+5. A warning blockquote callout emphasizing potential operational or deployment failures if a configuration error occurs.
+
+Raw Notes to Process:
+[INSERT RAW DEVELOPER LOGS, COMMANDS, OR CHAT SCRAPS HERE]
+```
+
+---
+
+## Prompt 2: Documenting REST API Response Payloads
+
+### Execution Prompt Payload
+```text
+You are an API Documentation specialist. Analyze the raw JSON payload provided below and generate a clean, Markdown-formatted parameter reference table. 
+
+The generated markdown table must include exactly three columns:
+- **Property Name** (formatted in clean monospace backticks)
+- **Data Type** (e.g., string, integer, boolean, array[string])
+- **Description** (A concise, one-sentence functional explanation of what the variable tracks)
+
+Raw JSON Object:
+[INSERT RAW JSON ENVELOPE PAYLOAD HERE]
+```

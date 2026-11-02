@@ -1,0 +1,25 @@
+# Portfolio: OmniLib House Centralized Document Architecture
+
+This repository contains a comprehensive documentation suite for **OmniLib House**, a centralized, multi-city library logistics platform and peer-to-peer book exchange system.
+
+This project showcases how clear technical communication bridges the gap between software development architectures and everyday real-world operational workflows.
+
+## 💡 System Concept Framework Overview
+OmniLib House resolves the logistical hurdles of managing multi-city library networks. Key architecture features include:
+* **Centralized Logistics Routing (ILLR):** Allows patrons to borrow a physical book in one city and return it to a branch in an entirely different city.
+* **Decentralized Custody Exchanges (DCTP):** A peer-to-peer validation framework enabling two users to securely swap books face-to-face while automatically updating account custody records via mobile devices.
+* **Integrated Media Networks:** Manages and streams digital assets (ePubs/PDFs) and high-quality video recordings of on-site author events across branches.
+
+---
+
+## 📂 Repository Directory Guide
+
+Navigate through these modular documentation guides to evaluate specific writing styles based on target audiences:
+
+1. **[System Architecture Specs](/docs/01-architecture-spec.md):** Deep technical overviews and SQL data schemas designed for Systems Architects and Backend Engineers.
+2. **[Core API Reference Manual](/docs/02-api-reference.md):** Strongly-typed payload templates, headers, status frameworks, and code blocks (cURL/Python) written for Integration Developers.
+3. **[Installation & Operations Playbook](/docs/03-installation-ops-guide.md):** Plain-language technical walkthroughs, environment build steps, and server launch workflows targeted at DevOps Teams and Branch Administrators.
+4. **[Internal Librarian Runbook](/docs/04-librarian-runbook.md):** Task-focused workflows and decision-tree guides tailored for library administrators and branch managers.
+5. **[Patron User Manual](/docs/05-end-user-guide.md):** Highly accessible instructions written in clear language to guide end-users through advanced system actions (like peer-to-peer book swaps).
+6. **[Troubleshooting Matrix](/docs/06-troubleshooting-matrix.md):** Error Matrices, diagnostic commands, and recovery runbooks written for System Administrators and Customer Support Desks.
+

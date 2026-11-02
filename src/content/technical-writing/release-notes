@@ -1,0 +1,27 @@
+# Release Notes: Enterprise Cloud Platform (v3.4.0)
+
+## Overview
+Version 3.4.0 introduces advanced role-based networking controls, optimized database query execution limits, and critical security patches for API gateway routing.
+
+
+## New Features & Core Enhancements
+
+### Network Security: VPC Peering Matrix Expansion
+* **Description:** Added native support for cross-region Virtual Private Cloud (VPC) peering topologies.
+* **Impact:** Administrators can now link multi-region database clusters securely without routing traffic over the public internet, reducing latency overhead by up to 14%.
+
+### Performance Tuning: Database Query Caching
+* **Description:** Implemented an automated Redis-backed query caching layer for frequently accessed lookups.
+* **Configuration:** Enabled by default. Custom retention limits can be modified via the `cache_ttl_seconds` parameter inside your environment properties file.
+
+
+## Deprecations & Breaking Changes
+> ⚠️ **Critical Update Notice:** Support for TLS v1.1 is deprecated and will be completely removed in version 3.5.0. Update your system handshake endpoints to TLS v1.2 or higher to prevent traffic drops.
+
+
+## Resolved Issues & Bug Fixes
+
+| Issue Identifier | Component Module | Functional Resolution Description |
+| :--- | :--- | :--- |
+| `ERR-9081` | Identity Provider | Resolved a memory leak condition triggered during bulk JWT session refresh calls. |
+| `ERR-4412` | Webhook Web | Fixed an issue where payload retries skipped exponential backoff intervals during network timeouts. |

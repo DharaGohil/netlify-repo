@@ -1,0 +1,20 @@
+# Automated Governance via Agentic AI Code Reviews
+
+## Architectural Strategy Overview
+To optimize review cycle speeds across expansive documentation updates, this project integrates an automated **Agentic AI Code Review Check** into our DevOps repository ecosystem. 
+
+When a writer opens a Pull Request, an autonomous workflow instance executes custom programmatic checks to lint text patterns, score readability, and ensure style guide compliance before a human editor steps in.
+
+## Automated Pipeline Architecture
+
+![Automated Pipeline Flow](ai-assisted-documentation/agentic-ai-review.md)
+
+## Sub-Agent Target Specializations
+
+### Sub-Agent A: Semantic & Readability Auditor
+* **Task:** Analyzes added text lines for sentence length, clarity, and structural complexity.
+* **Action:** Automatically drops warning logs on any paragraph where sentence length exceeds 25 words or falls back to passive voice structures.
+
+### Sub-Agent B: UI String Sync Validator
+* **Task:** Compares the documentation markdown file updates against changes in the front-end user interface application codebase.
+* **Action:** Flags a PR warning if a user guide references an old UI button string that has been modified or renamed in corresponding UI development files.

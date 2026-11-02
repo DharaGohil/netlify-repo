@@ -1,0 +1,40 @@
+# Automated CI/CD Publishing Pipeline Configuration
+
+## Workflow Architecture Overview
+Every pull request targeting the production documentation repository triggers an automated validation pipeline via GitHub Actions. Content cannot be merged into the production branch until all automated code quality gates pass successfully.
+
+```text
+[Commit Pushed] ──> [Lint Checks] ──> [Link Validator] ──> [Build Dry-Run] ──> [Staging Deploy]
+```
+
+## GitHub Actions Workflow Configuration Matrix
+Below is the system file defining our automated compilation gates (`.github/workflows/docs-deploy.yml`):
+
+```yaml
+name: Documentation Deployment Pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Run Markdown Lint Checks
+        uses: DavidAnson/markdownlint-cli2-action@v1
+
+      - name: Validate Hyperlink Integrity
+        uses: tcort/markdown-link-check@v3.11.0
+        with:
+          config-file: '.markdown-link-check.json'
+
+      - name: Compile Static Site Output
+        run: |
+          npm install
+          npm run build
+```

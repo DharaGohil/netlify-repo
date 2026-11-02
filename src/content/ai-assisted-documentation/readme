@@ -1,0 +1,42 @@
+# AI-Assisted Documentation
+
+This section demonstrates how Generative AI can be used responsibly within technical communication workflows.
+
+## Contents
+
+### AI Documentation Workflow
+
+Demonstrates:
+
+- SME information gathering
+- AI draft generation
+- Human review process
+- Final publication workflow
+
+➡️ [Workflow](workflow.md)
+
+
+### Prompt Library
+
+Reusable prompts for:
+
+- Release notes
+- API documentation
+- User guides
+- FAQs
+
+➡️ [Prompt Library](prompt-library.md)
+
+
+### Review Process
+
+Quality controls and governance for AI-generated content.
+
+➡️ [Review Process](review-process.md)
+
+
+### Agentic AI Review
+
+Examples of automated draft reviews against documentation standards and style guidelines.
+
+➡️ [Agentic AI Review](agentic-review.md)

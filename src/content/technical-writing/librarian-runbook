@@ -1,0 +1,22 @@
+# Internal Branch Operations: Administrative Librarian Runbook
+
+## Managing Cross-City Inventory Routing (ILLR Processing)
+When a physical book belonging to a different city branch is checked in, the system flags the transaction as a cross-city return. Administrative personnel must process these assets according to these specific logistical rules:
+
+### Detailed Execution Steps:
+1. Scan the tracking barcode on the inner cover of the book using the terminal interface tool.
+2. Review the dialog warning modal string: `ALERT: Home Branch Mismatch detected. Native Location: Mumbai. Current Location: Gandhinagar.`
+3. Evaluate the processing engine recommendation note:
+   * If the local reservation queue shows an active matching hold, select **Reassign Asset to Local Inventory**. Place the book on the local branch pickup shelf layout.
+   * If no active hold exists, select **Route to Logistics Container**. Secure the asset within the designated shipping container to be routed home during the next scheduled transit loop.
+
+## Reviewing Digital Book Acquisition Recommendations
+Purchase recommendations for physical and electronic books submitted by patrons through the account dashboards must be cleared every Friday afternoon:
+
+1. Log into the administrative control center dashboard and navigate to **Collection Management** > **Purchase Requests**.
+2. Filter the requests by the current operational city branch workspace.
+3. Review the request metrics: The portal automatically surfaces cross-branch request velocity data (e.g., *“32 users across 3 cities have requested this ISBN”*).
+4. Select one of the processing actions:
+   * **Approve Purchase:** Triggers automated purchase orders to publishing vendors for physical inventory.
+   * **Route Digital License:** Instantly purchases an additional electronic multi-user ePub or PDF license to clear active waitlists.
+   * **Deny / Suppress:** Used for duplicate requests or titles that violate collection development guidelines.

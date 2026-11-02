@@ -1,0 +1,23 @@
+# Enterprise Content Taxonomy & Tagging Schema Design
+
+## Project Background & Rationale
+Unstructured tag creation leads to information silos and broken search results. This document introduces a controlled vocabulary and taxonomy schema applied across unified technical resource environments to improve search engine discoverability.
+
+## Controlled Facets & Structural Vocabularies
+
+### A. Environment Facet (`env:`)
+Used to categorize where a specific system event or document scenario takes place.
+*   `env:sandbox` — Non-production testing clusters.
+*   `env:staging` — Pre-flight quality assurance mirrors.
+*   `env:production` — Live consumer infrastructure.
+
+### B. Technical Layer Facet (`layer:`)
+Identifies the component layer responsible for the documented asset.
+*   `layer:api` — External application interfaces and endpoints.
+*   `layer:database` — Relational databases, object stores, and cache memories.
+*   `layer:network` — Virtual private clouds, firewalls, and routing networks.
+
+## Strict Tagging Governance Rules
+1. **Case Format:** All taxonomy terms must be declared using `lowercase-kebab-case`.
+2. **Cardinality Limits:** No document may contain more than **5 tags** total.
+3. **Approval Lifecycle:** New tags cannot be created ad-hoc. Proposing a term requires submitting a pull request to the central governance schema file located at `/taxonomy/schema.json`.

@@ -1,0 +1,46 @@
+# Environment Installation & Branch Setup Guide
+
+This document details the environment installation process for the **OmniLib House** platform. This setup provides branch administrators and operations engineers with the instructions required to launch a local instance of the multi-city library network.
+
+## System Components
+Before running setup commands, the core operational components of OmniLib House must be understood:
+
+*   **The Execution Engine (Python 3.11+):** The primary runtime environment responsible for processing business rules, user accounts, and cross-city routing parameters.
+*   **The Relational Storage Layer (PostgreSQL 15):** The central database vault where book titles, borrowing histories, and chat transcripts are permanently recorded.
+*   **The Volatile Caching Layer (Redis 7.0):** A high-speed temporary memory broker that stores active peer exchange verification codes and handles real-time chat data.
+*   **The Media Storage Locker (Cloud Object Storage):** The digital repository where large files, including author event recordings, ePub books, and audiobook audio tracks, are stored.
+
+## Step-by-Step Setup Instructions
+
+### Step 1: Initialize the Workspace Folder
+Open the terminal interface. Create a new directory for the OmniLib House source files, and navigate into that path:
+```bash
+mkdir -p omnilib-house-core && cd omnilib-house-core
+```
+
+### Step 2: Establish an Isolated Virtual Environment
+To prevent dependency conflicts with other host applications, an isolated virtual runtime environment must be initialized:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+*Note: For Windows execution environments, use the following initialization command: `.venv\Scripts\activate`*
+
+### Step 3: Install Core Software Dependencies
+Download and compile the structural framework packages required to run the core architecture, network utilities, and database drivers:
+```bash
+pip install fastapi uvicorn psycopg2-binary redis
+```
+
+### Step 4: Run Baseline Database Migrations
+Initialize the centralized database schemas, generate the columns required for cross-city logging matrices, and seed the default branch locations into the relational database:
+```bash
+python manage.py run-migrations --schema=central_ledger.sql
+python manage.py seed-branches --branch-names="Gandhinagar, Mumbai, Delhi, Bengaluru"
+```
+
+### Step 5: Start the Application Server
+Launch the asynchronous application execution threads to begin listening for inbound user requests, real-time chat box streams, and logistic messages:
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8080 --workers 4
+```

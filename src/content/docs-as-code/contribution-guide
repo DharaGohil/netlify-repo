@@ -1,0 +1,25 @@
+# Technical Content Contribution Guide
+
+Follow these steps to submit edits or suggest new guides.
+
+## Step-by-Step Contribution Workflow
+
+### 1. Fork & Branch the Repository
+Clone the repository locally and create a feature branch:
+```bash
+git checkout -b docs/fix-mfa-token-expiration
+```
+
+### 2. Adhere to Content Guidelines
+*   Keep files structured using standard Markdown headings.
+*   Use standard code-block syntaxes accompanied by the correct programming language flag (e.g., ` ```javascript `).
+*   Run local lint tests to ensure the content matches the project styles:
+    ```bash
+    npm run docs:lint
+    ```
+
+### 3. Open a Pull Request (PR)
+Push the local branch to the remote infrastructure tracking workspace and open a clear Pull Request:
+*   Clearly state the problem the documentation fix resolves.
+*   Link any relevant tracking tickets (e.g., Closes issue `#4321`).
+*   Assign at least one Senior Technical Writer and one Engineering Subject Matter Expert (SME) to review the content.

@@ -1,0 +1,89 @@
+# Developer Reference Guide: Core OmniLib House API
+
+This API endpoint reference focuses on executing real-time user-to-user physical asset swaps via the Decentralized Custody Transfer Protocol (DCTP) and managing inter-city cross-routing queries.
+
+## Gateway Security Configuration
+
+All platform integration interactions must pass explicit bearer signature variables inside payload headers.
+
+```http
+Authorization: Bearer <YOUR_SECRET_JSON_WEB_TOKEN>
+Content-Type: application/json
+```
+
+
+## Generate Peer-to-Peer Transfer Token
+
+### Route Definition
+`POST /api/v1/assets/exchange/initialize`
+
+Generates a time-locked, signed token enabling an immediate, decentralized physical custody swap between two validated user profiles.
+
+### Request Body Schema
+
+| Variable Name | Type | Obligation | Description |
+| :--- | :--- | :--- | :--- |
+| `asset_id` | `string` | **Required** | The unique internal barcode identifier of the physical book. |
+| `current_holder_id` | `string` | **Required** | The account token of the individual relinquishing physical custody. |
+
+#### Example Request Payload
+```json
+{
+  "asset_id": "barcode_99011_omega",
+  "current_holder_id": "usr_88219_alpha"
+}
+```
+
+### Server Response Cycle
+
+#### `201 Created`
+The transaction token was successfully registered in the caching layer.
+
+```json
+{
+  "exchange_token": "DCTP-882-99011-XYZ",
+  "time_to_live_seconds": 300,
+  "verification_status": "awaiting_receiver_acknowledgment"
+}
+```
+
+#### `409 Conflict`
+Returned if the target asset is already locked by a hold or is marked as missing.
+
+```json
+{
+  "error": {
+    "code": "ASSET_STATE_LOCKED",
+    "message": "This asset is flagged as in-transit and cannot undergo peer exchange verification."
+  }
+}
+```
+
+
+## Multi-Language Execution Examples
+
+### cURL Execution
+```bash
+curl -X POST "https://omnilib.house" \
+  -H "Authorization: Bearer jwt_mock_token_abc" \
+  -H "Content-Type: application/json" \
+  -d '{"asset_id": "barcode_99011_omega", "current_holder_id": "usr_88219_alpha"}'
+```
+
+### Python Integration Snippet
+```python
+import requests
+
+endpoint_gateway = "https://omnilib.house"
+connection_headers = {
+    "Authorization": "Bearer jwt_mock_token_abc",
+    "Content-Type": "application/json"
+}
+payload_data = {
+    "asset_id": "barcode_99011_omega",
+    "current_holder_id": "usr_88219_alpha"
+}
+
+server_response = requests.post(endpoint_gateway, json=payload_data, headers=connection_headers)
+print(f"Status Code: {server_response.status_code}")
+```

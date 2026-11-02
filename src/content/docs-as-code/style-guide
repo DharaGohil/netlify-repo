@@ -1,0 +1,18 @@
+# Corporate Technical Documentation Style Guide
+
+## Tone, Voice, and Technical Perspective
+*   **Tone:** Professional, objective, direct, and user-centric.
+*   **Voice:** Use **active voice** instead of passive voices wherever possible.
+    *   *Correct:* "The system updates the database table index."
+    *   *Incorrect:* "The database table index is updated by the system."
+*   **Perspective:** Address users using the **second-person perspective** ("you"). Do not use first-person pronouns like "I", "we", or "our".
+
+## Headings and Structural Organization
+*   Every document must contain exactly **one Tier-1 Heading (`#`)** acting as the main title.
+*   Use sequential heading patterns (`##`, `###`, `####`). Never skip a heading tier (e.g., do not place an `####` immediately below an `##`).
+*   Write all headings in **Sentence case**, capitalizing only the first word and proper nouns.
+
+## UI Element Representation Standard
+When directing a user through a software interface, format the UI interactions using these exact visual conventions:
+*   **Buttons, Tabs, and Fields:** Wrap the literal UI labels inside bold text markers (e.g., Click the **Submit Transaction** button).
+*   **Menu Navigation Chains:** Separate sequential navigation items using bold markers and right-pointing angle indicators (e.g., Select **File** > **Preferences** > **Keymaps**).

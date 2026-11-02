@@ -1,0 +1,23 @@
+# Quality Assurance & Human Verification Guidelines for AI Content
+
+## Core Verification Manifesto
+Any documentation file created or updated with the assistance of generative artificial intelligence models must pass a manual review process before it can be merged into production tracking branches. Automatic code merges of unchecked text drafts are strictly forbidden.
+
+## Mandatory Verification Checklists
+
+### A. Technical Integrity & Accuracy Check
+* [ ] Verify that every command line snippet (`bash`, `yaml`, etc.) executes successfully without syntax errors.
+* [ ] Confirm that all variable placeholders match actual deployment names.
+* [ ] Ensure configuration parameters map directly to active software application switches.
+
+### B. Hallucination & Consistency Screening
+* [ ] Audit every URL path link, file reference guide, and anchor snippet to confirm it exists and targets live locations.
+* [ ] Check that data values, metrics, and memory limits are factually sound and do not reference non-existent software features.
+
+### C. Structural Style & Layout Verification
+* [ ] Confirm the file contains exactly one Tier-1 (`#`) heading tag.
+* [ ] Verify that all UI elements mentioned in text instructions (buttons, dropdowns, navigation paths) match actual software UI strings.
+* [ ] Ensure all sentences are written using the second-person perspective ("you") and feature active voice constructions.
+
+## Discrepancy Escalation Protocol
+If an AI-assisted draft contains major structural errors or repeats formatting mistakes, the technical communicator must update the prompt template rules or provide better context logs to refine future outputs.

@@ -1,0 +1,55 @@
+# Patron User Manual: System Operations Guide
+
+The OmniLib House platform provides access to a unified physical and digital network. Patrons can borrow books across different cities, stream media instantly, and directly exchange books with other readers.
+
+## Borrowing and Returning Physical Books
+
+OmniLib House features a centralized inventory network. Patron account configurations are active across all network branches, allowing for asset pick-ups and returns at any city location.
+
+### A. Local Borrowing
+1. Log into the application dashboard to search the centralized catalog.
+2. Filter the search by the **Current City Location** to confirm asset availability on the local branch shelf.
+3. Visit the designated branch, retrieve the physical asset, and scan the inner cover barcode at any automated checkout kiosk.
+4. The account profile updates to display the asset status as **Checked Out** with a standard **21-day borrow window**.
+
+### B. Inter-City Cross-Returns
+Physical books do not need to be returned to the exact branch or city where they were originally borrowed. Books borrowed in *City A* (e.g., Mumbai) can be returned to a branch in *City B* (e.g., Gandhinagar).
+
+1. Walk into any OmniLib House branch in the current city location.
+2. Place the book directly into the automated return drop box or hand the asset to an on-duty librarian.
+3. The Inter-Library Logistics Router (ILLR) scans the item, automatically clears the book from the active account profile, and updates the asset state in the central ledger.
+
+## Instant Access to the Online Digital Library
+
+The centralized digital catalog provides direct access to electronic media resources, bypassing physical branch shelves entirely.
+
+### A. Reading ePubs and PDFs Online
+1. Navigate to the **Digital Library Catalogs** panel inside the application portal.
+2. Select the targeted electronic book asset and click **Read Now**.
+3. The platform opens the integrated e-reader module. Settings allow for font scaling adjustments, night mode toggling, and bookmark synchronization.
+4. Digital checkouts expire automatically after **14 days**, returning the license back to the cloud pool without late fee penalties.
+
+### B. Streaming Audiobooks Online
+1. Search the catalog and locate the **Audiobook Waveform** indicator icon.
+2. Click **Listen Online** to activate the integrated system media playback layer.
+3. The audio narrative streams directly through the browser or mobile application interface. The platform automatically tracks the precise playback timestamp across devices.
+
+## Exchanging Books Directly with Other Readers (P2P Swaps)
+
+Patrons can perform face-to-face physical book swaps. This transfers the tracking status of the asset directly to the recipient profile without requiring processing at a physical library branch.
+
+### Steps to Complete a Handshake Transfer:
+1. **Current Holder (User A):** Open the application, navigate to **My Active Borrowed Books**, select the book designated for transfer, and click **Initialize Peer Exchange**.
+2. Note the dynamic 6-digit verification code string shown on the screen (e.g., `441-209`).
+3. **New Borrower (User B):** Open the application dashboard page, select **Scan / Receive Peer Book**, and enter the 6-digit verification code provided by User A.
+4. The system validates the location parameters and instantly transfers the book tracking registration to the recipient account profile.
+
+> 📅 **Borrowing Period Note:** Upon validation of a peer-to-peer book swap, the borrowing period resets according to standard framework rules (default is **21 days**). The book can be returned to *any* OmniLib House branch city location when finished.
+
+## Streaming Video Records of Library Guest Events
+
+Full recordings of live book signings, author panels, or Q&A events across all city branches are available for streaming directly from the account dashboard.
+
+1. Navigate to the **Community & Events Workspace** tab inside the portal application interface.
+2. Browse through the available recordings sorted by Author Name, City Location, or Subject Matter.
+3. Click the **Stream Media** icon to launch the built-in video streaming player module.

@@ -1,0 +1,62 @@
+# Fixing Common OmniLib House System Problems
+
+This guide helps library staff, support teams, and system admins quickly fix the most common technical issues on the OmniLib House platform.
+
+---
+
+## Quick Problem Finder (Diagnostic Matrix)
+
+| What is happening? | Error Code | Why is it happening? | Where to look for logs |
+| :--- | :--- | :--- | :--- |
+| Readers cannot swap a book face-to-face. | `ERR_DCTP_EXPIRED_TOKEN` | The 6-digit swap code was not entered within the 5-minute time limit. | `/var/log/omnilib/dctp_handshakes.log` |
+| Internal chat rooms are down or messages are not sending. | `ERR_WS_BROKER_DISCONNECT` | The background chat server lost connection or timed out. | `/var/log/omnilib/websocket_chat.log` |
+| Event videos or audiobooks will not load or keep buffering. | `ERR_CDN_URL_EXPIRED` | The temporary internet link for the video expired or broke. | `/var/log/omnilib/media_delivery.log` |
+| A book returned in a different city does not show up in searches yet. | `ERR_ILLR_INDEX_LAG` | High system traffic delayed the automatic update between city branches. | `/var/log/omnilib/inventory_search.log` |
+
+---
+
+## Step-by-Step Fixes
+
+### Fix 1: Solving Book Swap Timeouts (`ERR_DCTP_EXPIRED_TOKEN`)
+
+This happens when phone network lag slows down a face-to-face book swap between two readers.
+
+1. **Check if the code is still valid:** Type this command into the background terminal to see if the database still remembers the code:
+   ```bash
+   redis-cli GET token:asset_barcode_99011_omega
+   ```
+2. **Get a new code:** If the system returns empty (`nil`), the code has expired. Tell the book owner to hit refresh in the mobile app to get a brand-new 6-digit code.
+3. **Forced Librarian Override:** If network issues keep blocking the phone transfer, a librarian can force the system to change the book owner by running this command:
+   ```bash
+   python system_utils.py --force-custody-transfer --asset="barcode_99011_omega" --recipient="usr_10442_beta"
+   ```
+
+---
+
+### Fix 2: Solving Chat Room Outages (`ERR_WS_BROKER_DISCONNECT`)
+
+This happens when a sudden rush of readers trying to coordinate book swaps overloads the messaging system.
+
+1. **Find the dropouts:** Look at the last 100 lines of the chat log to see if the system is forcing users offline:
+   ```bash
+   tail -n 100 /var/log/omnilib/websocket_chat.log | grep -i "connection_terminated"
+   ```
+2. **Reset the chat system:** If widespread disconnections are visible, restart the chat broker software to clear out jammed connections and get messaging working again:
+   ```bash
+   sudo systemctl restart omnilib-chat-broker.service
+   ```
+
+---
+
+### Fix 3: Solving Video Playback Failures (`ERR_CDN_URL_EXPIRED`)
+
+This happens when users try to watch recorded author events or book signings from home and the video player fails to load.
+
+1. **Make sure the file exists:** Check the cloud storage folder directly to ensure the original video file was not accidentally deleted:
+   ```bash
+   aws s3 ls s3://omnilib-media-vault/events/event_302_raw.mp4
+   ```
+2. **Refresh the video links:** If the file is safe but links keep breaking, run this media tool to refresh the streaming file segments:
+   ```bash
+   ffmpeg -i event_302_raw.mp4 -codec:v libx264 -codec:a aac -f hls -hls_time 10 -hls_playlist_type vod ./assets/streams/event_302.m3u8
+   ```

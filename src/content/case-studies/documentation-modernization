@@ -1,0 +1,29 @@
+# Case Study: Refactoring and Modernizing Content Operations in an Active Release Repository
+
+## Project Overview & Scope
+* **Context:** The project involved restructuring a primary product repository to modernize its information architecture and sync it with active development sprints.
+* **Challenge:** The legacy folder setup was cluttered with deprecated system configurations, hardcoded formatting rules, and redundant structural manifest files, which routinely caused build failures in deployment pipelines.
+* **Solution:** Executed a clean structural refactoring, fixed broken relative references, stripped out old framework elements, and synchronized core document files with modern layout definitions.
+
+## Refactoring Runbook & Execution Steps
+
+### Repository Branching & Workspace Preparation
+* **Upstream Synchronization:** Pulled the latest production codebase modifications locally to prevent merge conflicts.
+* **Isolation Strategy:** Created a dedicated feature branch (`feature/dac-migration`) to isolate modernization tasks from active documentation workflows.
+* **Staging Area Setup:** Copied core document blueprint folders into a temporary workspace to safely scrub text and alter file naming structures.
+
+### Structural Refactoring & Sanitization
+* **Manifest Alignment:** Updated and audited the main navigation files (`summary.md`), running structural search-and-replace routines to map legacy text filenames to the updated directory structure.
+* **Legacy Asset Cleanup:** Programmatically stripped out deprecated config modules, layout overrides, and platform-specific metadata files using terminal operations:
+   ```bash
+   find . -name "\.mkdocs" -type f -delete
+   ```
+* **Path & Asset Standardization:** Updated hardcoded resource pathways across the repository, replacing old asset directions with a standardized path convention:
+   * *Search Target:* `../images/`
+   * *Replacement Target:* `./assets/`
+* **Branding Compliance:** Replaced old branding imagery with modern corporate logo files retrieved from centralized brand guidelines.
+
+### Content Validation & Deployment
+* **Metadata Updating:** Rewrote the configuration variables (`metadata.yaml`) to match modern tracking rules.
+* **Link Integrity Pass:** Audited all inline markdown syntax variations, fixing broken cross-references and stabilizing nested block quotes (`include-markdown`).
+* **Main Branch Re-Integration:** Moved all verified assets from the temporary workspace into the main documentation tree, testing the final static-site build before merging changes back into production.
