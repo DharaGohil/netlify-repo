@@ -14,7 +14,7 @@
 
 ### Structural Refactoring & Sanitization
 * **Manifest Alignment:** Updated and audited the main navigation files (`summary.md`), running structural search-and-replace routines to map legacy text filenames to the updated directory structure.
-* **Legacy Asset Cleanup:** Programmatically stripped out deprecated config modules, layout overrides, and platform-specific metadata files using terminal operations:
+* **Legacy Asset Cleanup:** Removed deprecated config modules, layout overrides, and platform-specific metadata files using terminal operations:
    ```bash
    find . -name "\.mkdocs" -type f -delete
    ```
