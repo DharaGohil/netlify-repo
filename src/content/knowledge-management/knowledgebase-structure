@@ -8,16 +8,16 @@ The KB is organized into four main functional pillars to support internal suppor
 
 ```text
 Root Tier (Enterprise Cloud Platform)
-├── 01-Onboarding-and-Licensing (User Persona: Global Admins)
+├── 01-Onboarding-and-Licensing (Intended Users: Global Admins)
 │   ├── Getting Started Guides
 │   └── License Activation & True-Up Guides
-├── 02-Core-Infrastructure (User Persona: Cloud Architects)
+├── 02-Core-Infrastructure (Intended Users: Cloud Architects)
 │   ├── Compute Provisioning
 │   └── Network Topology & VPC Peering
-├── 03-Security-and-Compliance (User Persona: InfoSec Officers)
+├── 03-Security-and-Compliance (Intended Users: InfoSec Officers)
 │   ├── Identity Governance (IAM)
 │   └── Audit Logging & Audit Trails
-└── 04-Developer-Resources (User Persona: Systems Engineers)
+└── 04-Developer-Resources (Intended Users: Systems Engineers)
     ├── SDK Reference Links
     └── Webhook Integration Modules
 ```
@@ -27,10 +27,10 @@ To maintain cross-platform indexing capabilities, every knowledge base article m
 
 ```yaml
 id: KB-10825
-title: Troubleshooting Asynchronous Database Connection Pools Timeout
+title: [tital_variable]
 author: Dhara Gohil
-created_date: 2026-11-01
-last_reviewed: 2026-11-01
+created_date: [date_variable]
+last_reviewed: [date_variable]
 audience: [devops-engineers, tier-3-support]
 products: [cloud-broker-v2]
 lifecycle_status: verified
