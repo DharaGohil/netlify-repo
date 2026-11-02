@@ -1,8 +1,10 @@
 # Portfolio: OmniLib House Centralized Document Architecture
 
-This repository contains a comprehensive documentation suite for **OmniLib House**, a centralized, multi-city library logistics platform and peer-to-peer book exchange system.
+This repository contains a comprehensive documentation suite for **OmniLib House**, a centralized, multi-city library management and peer-to-peer book exchange system.
 
-This project showcases how clear technical communication bridges the gap between software development architectures and everyday real-world operational workflows.
+This project showcases diverse technical documentation relevant to specific audiences. 
+
+**Project Note:** OmniLib House is a fictional system used purely as a conceptual sample. I designed and wrote these document sets to showcase my technical writing skills, information architecture design, and content strategy workflows in a real-world scenario.
 
 ## 💡 System Concept Framework Overview
 OmniLib House resolves the logistical hurdles of managing multi-city library networks. Key architecture features include:
@@ -10,7 +12,6 @@ OmniLib House resolves the logistical hurdles of managing multi-city library net
 * **Decentralized Custody Exchanges (DCTP):** A peer-to-peer validation framework enabling two users to securely swap books face-to-face while automatically updating account custody records via mobile devices.
 * **Integrated Media Networks:** Manages and streams digital assets (ePubs/PDFs) and high-quality video recordings of on-site author events across branches.
 
----
 
 ## 📂 Repository Directory Guide
 
