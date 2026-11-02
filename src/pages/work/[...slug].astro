@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import DocumentDirectory from '../../components/DocumentDirectory.astro';
+import { categories, documents } from '../../data/documents';
 import { Marked } from 'marked';
 import architectureImage from '../../assets/omnilib-arch-diagram.jpeg';
 import pipelineImage from '../../assets/automated-pipeline-flow.jpeg';
@@ -10,8 +10,8 @@ const docs = import.meta.glob('../../content/*/*', { query: '?raw', import: 'def
 return Object.entries(docs).filter(([path]) => !path.endsWith('.pdf') && !path.endsWith('.md')).map(([path,content]) => ({params:{slug:path.split('/content/')[1]}, props:{content, category:path.split('/content/')[1].split('/')[0]}}));
 }
 const { content, category } = Astro.props;
-const related = Object.entries(files).filter(([path]) => path.includes(`/content/${category}/`) && !path.endsWith('.pdf') && !path.endsWith('.md'));
-const labels: Record<string,string> = { 'readme':'Project overview', 'api-reference':'API reference', 'architecture-spec':'Architecture specification', 'installation-ops-guide':'Installation & operations', 'user-guide':'User guide', 'librarian-runbook':'Librarian runbook', 'troubleshooting-guide':'Troubleshooting', 'release-notes':'Release notes' };
+const collection = categories.find(item => item.slug === category)!;
+const related = documents.filter(document => document.slug.startsWith(`${category}/`));
 let source = String(content).replace(/\{:\s*target="_blank"\}/g,'');
 const aliases: Record<string,string> = {'01-architecture-spec':'architecture-spec','02-api-reference':'api-reference','03-installation-ops-guide':'installation-ops-guide','04-librarian-runbook':'librarian-runbook','05-end-user-guide':'user-guide','06-troubleshooting-matrix':'troubleshooting-guide','knowledge-base-structure':'knowledgebase-structure'};
 source = source.replace(/\]\(([^)]+)\)/g, (match, url) => {
@@ -25,4 +25,23 @@ return found ? `](/work/${found.split('/content/')[1]})` : match;
 const html = await new Marked().parse(source);
 const title = String(content).split('\n').find(line => line.startsWith('# '))?.replace(/^# /,'') || category;
 ---
-<Layout title={`${title} — Dhara Gohil`}><article class="document wrap"><a class="document-back" href="/#work">← Back to selected work</a><p class="eyebrow">WRITING SAMPLE / {category.replaceAll('-',' ').toUpperCase()}</p><aside class="document-navigation"><h2>Browse documents by category</h2><DocumentDirectory currentSlug={Astro.params.slug} /></aside><div class="prose" set:html={html}></div><nav class="sample-nav" aria-label="Related writing samples"><h2>Explore this collection</h2><div>{related.map(([path]) => {const slug = path.split('/content/')[1]; const name = slug.split('/')[1];return <a href={`/work/${slug}`} aria-current={Astro.params.slug === slug ? 'page' : undefined}>{labels[name] || name.replaceAll('-',' ')}</a>})}</div></nav></article></Layout>
+<Layout title={`${title} — Dhara Gohil`}>
+<div class="document wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/#documents">Library</a><span aria-hidden="true">/</span><a href={`/collections/${category}`}>{collection.label}</a></nav>
+    <div class="reading-layout">
+        <article class="reading-article" aria-label={title}>
+            <p class="eyebrow">WRITING SAMPLE / {collection.label.toUpperCase()}</p>
+            <div class="prose" set:html={html}></div>
+        </article>
+        <aside class="reading-sidebar" aria-label="Collection navigation">
+            <p class="eyebrow">IN THIS COLLECTION</p>
+            <h2>{collection.label}</h2>
+            <nav class="reading-links" aria-label="Documents in this collection">
+                {related.map(document => <a href={`/work/${document.slug}`} aria-current={Astro.params.slug === document.slug ? 'page' : undefined}>{document.title}</a>)}
+            </nav>
+            <a class="document-back" href={`/collections/${category}`}>View collection →</a>
+            <a class="document-back" href="/#documents">← All categories</a>
+        </aside>
+    </div>
+</div>
+</Layout>
