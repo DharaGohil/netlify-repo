@@ -1,14 +1,14 @@
 # Case Study: Migrating Structured DITA XML to a Git-Driven Docs-as-Code Workflow
 
 ## Project Overview & Scope
-* **Scale:** Migration of roughly 20 core enterprise document frameworks from a heavy XML paradigm into flat, lightweight Markdown configurations.
-* **Challenge:** Engineering velocity routinely outpaced documentation lifecycles. Traditional XML authoring suites created technical silos, preventing cross-functional software developers and product owners from contributing directly.
+* **Scale:** Migration of roughly 20 core enterprise document frameworks from a heavy XML into flat, lightweight Markdown formats.
+* **Challenge:** Development speed routinely outpaced documentation lifecycles. Traditional XML authoring suites created standalone compartments, preventing cross-functional software developers and product owners from contributing directly.
 * **Solution:** Orchestrated an end-to-end transformation framework using open-source parsing engines to convert single-source XML schemas into standard Markdown, deploying them into a Git-based version control ecosystem.
 
 ## Technical Migration Lifecycle
 
 ### Pre-Migration Readiness
-* **Repository Architecture:** Collaborated with DevOps infrastructure engineers to establish dedicated version control repositories for each document framework along with proper team access permissions.
+* **Repository Architecture:** Collaborated with DevOps infrastructure engineers to establish dedicated version control repositories for each document along with proper team access permissions.
 * **Environment Provisioning:** Deployed specialized Virtual Machine (VM) workspaces configured with source control clients and the latest compiler binaries to manage bulk document sets.
 
 ### Execution & Refinement Pipeline
@@ -17,11 +17,11 @@
    ```bash
    dita --input=path/to/input.ditamap --format=markdown
    ```
-3. **Exception Handling:** Programmatically captured and resolved schema compilation faults caused by unmapped local variables or complex structural blocks.
+3. **Exception Handling:** Captured and resolved compilation errors caused by unmapped local variables or complex structural blocks.
 4. **Link & Asset Resolution:** Corrected broken relative paths, asset reference pointers, layout captions, and warning notes to align with standard style parameters.
 5. **Upstream Synchronization:** Synchronized localized updates between legacy file servers and remote Git production branches, verifying the output via automated staging sites.
 
 ### Post-Migration Governance & Training
-* **Verification Audit:** Conducted exhaustive integrity checks comparing the converted Markdown files with the original DITA files to verify content completeness.
+* **Verification Audit:** Conducted integrity checks comparing the converted Markdown files with the original DITA files to verify content completeness.
 * **Cross-Functional Upskilling:** Conducted technical training sessions for writing staff and stakeholders covering modern tooling setups, including Git workflow managers, lightweight Markdown editors, and IDE integrations.
-* **Knowledge Base Expansion:** Published a comprehensive migration troubleshooting guide on Confluence, detailing automation bugs and resolution strategies to simplify future product onboarding tracks.
+* **Knowledge Base Expansion:** Published a migration troubleshooting guide on Confluence, detailing automation bugs and resolution strategies to simplify future product onboarding tracks.
