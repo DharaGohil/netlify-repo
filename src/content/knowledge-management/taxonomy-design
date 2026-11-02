@@ -3,15 +3,15 @@
 ## Project Background & Rationale
 Unstructured tag creation leads to information silos and broken search results. This document introduces a controlled vocabulary and taxonomy schema applied across unified technical resource environments to improve search engine discoverability.
 
-## Controlled Facets & Structural Vocabularies
+## Controlled Sections & Structural Vocabularies
 
-### A. Environment Facet (`env:`)
+### A. Environment Section (`env:`)
 Used to categorize where a specific system event or document scenario takes place.
 *   `env:sandbox` — Non-production testing clusters.
 *   `env:staging` — Pre-flight quality assurance mirrors.
 *   `env:production` — Live consumer infrastructure.
 
-### B. Technical Layer Facet (`layer:`)
+### B. Technical Layer Section (`layer:`)
 Identifies the component layer responsible for the documented asset.
 *   `layer:api` — External application interfaces and endpoints.
 *   `layer:database` — Relational databases, object stores, and cache memories.
