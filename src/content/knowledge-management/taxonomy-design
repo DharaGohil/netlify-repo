@@ -18,6 +18,6 @@ Identifies the component layer responsible for the documented asset.
 *   `layer:network` — Virtual private clouds, firewalls, and routing networks.
 
 ## Strict Tagging Governance Rules
-1. **Case Format:** All taxonomy terms must be declared using `lowercase-kebab-case`.
-2. **Cardinality Limits:** No document may contain more than **5 tags** total.
-3. **Approval Lifecycle:** New tags cannot be created ad-hoc. Proposing a term requires submitting a pull request to the central governance schema file located at `/taxonomy/schema.json`.
+*   **Case Format:** All taxonomy terms must be declared using `lowercase-kebab-case`.
+*   **Cardinality Limits:** No document may contain more than **5 tags** total.
+*   **Approval Lifecycle:** New tags cannot be created ad-hoc. Proposing a term requires submitting a pull request to the central governance schema file located at `/taxonomy/schema.json`.
