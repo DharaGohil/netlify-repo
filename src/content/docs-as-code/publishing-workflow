@@ -11,30 +11,60 @@ Every pull request targeting the production documentation repository triggers an
 Below is the system file defining our automated compilation gates (`.github/workflows/docs-deploy.yml`):
 
 ```yaml
-name: Documentation Deployment Pipeline
+name: Deploy Documentation
+
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main # Triggers when code is pushed to the main branch
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  validate-and-build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps:deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Run Markdown Lint Checks
-        uses: DavidAnson/markdownlint-cli2-action@v1
+      # OPTIONAL: Insert documentation build tools here if needed (e.g., MkDocs, Sphinx, Docusaurus, npm run build)
+      # Example for a Node-based SSG:
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
+      # - name: Install Dependencies & Build
+      #   run: |
+      #     npm ci
+      #     npm run build
 
-      - name: Validate Hyperlink Integrity
-        uses: tcort/markdown-link-check@v3.11.0
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          config-file: '.markdown-link-check.json'
+          # Point this to your built documentation folder (e.g., './dist', './site', or './' if it's raw HTML)
+          path: './docs'
 
-      - name: Compile Static Site Output
-        run: |
-          npm install
-          npm run build
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
+
+---
+**Note**: The example code is taken from the internet, the actual code should be provided by the development team.
+---
