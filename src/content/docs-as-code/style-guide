@@ -3,14 +3,16 @@
 ## Tone, Voice, and Technical Perspective
 *   **Tone:** Professional, objective, direct, and user-centric.
 *   **Voice:** Use **active voice** instead of passive voices wherever possible.
-    *   *Correct:* "The system updates the database table index."
-    *   *Incorrect:* "The database table index is updated by the system."
-*   **Perspective:** Address users using the **second-person perspective** ("you"). Do not use first-person pronouns like "I", "we", or "our".
+    *   **Correct**: "The system updates the database table index."
+    *   **Incorrect**: "The database table index is updated by the system."
+*   **Perspective**: Address users using the **second-person perspective** ("you"). Do not use first-person pronouns like "I", "we", or "our".
 
 ## Headings and Structural Organization
 *   Every document must contain exactly **one Tier-1 Heading (`#`)** acting as the main title.
 *   Use sequential heading patterns (`##`, `###`, `####`). Never skip a heading tier (e.g., do not place an `####` immediately below an `##`).
-*   Write all headings in **Sentence case**, capitalizing only the first word and proper nouns.
+*   Write all headings in either sentence case or camel case depending on the preferred organizational style.
+    *   **Sentence case**: Capitalize only the first word and proper nouns.
+    *   **Camel Case**: Capitalize each word in a sentence. 
 
 ## UI Element Representation Standard
 When directing a user through a software interface, format the UI interactions using these exact visual conventions:
